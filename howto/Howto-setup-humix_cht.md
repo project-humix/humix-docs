@@ -150,7 +150,7 @@ vi config.js </pre>
 > **< Note > 取得thinkURL,senseId** <br>
 <img border="0" height="280" src="https://2.bp.blogspot.com/-Ws14YIG-g-w/VxE0B_3oB3I/AAAAAAAAAHI/8R00fLCjrvYRhdLCsXL0estBwwt8XiytQCLcB/s1600/humix-pi2-config.png" width="400" /> <br>
 
-##### step4. 更改 Watson Speech Recognition Credentials (紅色框框為需要更改的部份) 
+##### step4. 更改 Watson Speech Recognition Credentials (RPi3) (紅色框框為需要更改的部份) 
 <pre>cd ~/humix-ng/sense/modules/core/humix-dialog-module/lib/ 
 vi config.js</pre> 
 <img border="0" height="280" src="https://4.bp.blogspot.com/-DLIadhPYcgU/Vw95gLGNfkI/AAAAAAAAAC8/gSkUB4RErfASbhQ8Bx1KybxyiaS4EL0tACLcB/s1600/IBM%2BBluemix%2B-watson.png" width="400" /> <br>
@@ -159,7 +159,7 @@ vi config.js</pre>
 <img border="0" height="280" src="https://3.bp.blogspot.com/-vWl2kRxMyek/Vw97S0Yis6I/AAAAAAAAADM/Va-5-Jb8OdAsMpiPL26sySTLsXxs-y90ACLcB/s1600/IBM%2BBluemix%2B-environment.png" width="400" /> <br>
 <img border="0" height="280" src="https://3.bp.blogspot.com/-BQOqL-H3xNc/Vw9-Cvod2gI/AAAAAAAAADo/cNa0HT6Qp_4ektVlPy3iuxTy3_I43p0XACLcB/s1600/humix-ng-think_pws.png" width="400" /> <br>
 
-##### step5. 執行 Humix Sense. <br> 
+##### step5. 執行 Humix Sense. (RPi3) <br> 
 設定好麥克風及喇叭後，到"sense"輸入 $ npm start 執行 Humix Sense 
 <pre> cd ~/humix-ng/sense 
  npm start</pre>
