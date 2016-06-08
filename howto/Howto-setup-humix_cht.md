@@ -33,12 +33,15 @@
 因為 humix think 主要運作於IBM Bluemix平台上，所以想要 enable humix的"大腦"，這個步驟要在本機端做操作。 <br>
 a. 將"humix-ng" 從github clone到本機端後做相關設定。
 <pre>git clone https://github.com/project-humix/humix-ng.git </pre>
-b.  進入"think"資料夾， 更改 manifest.yml 檔案設定
+b.  進入"think"資料夾， 更改 manifest.yml 檔案設定 
 進入"think"資料夾
+(for linux)
 <pre>cd humix-ng/think </pre>
 更改 manifest.yml 檔案設定，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份) <br>
 <pre>vim manifest.yml </pre>
  <img border="0" height="280" src="https://4.bp.blogspot.com/-DG2AZWai6XI/Vw9RbQ6jfBI/AAAAAAAAACA/Z-qpv-dcEncJl_QmZy2swW_GR8kqD83RACKgB/s1600/humix-ng-think_manifest.png" width="400" /> <br>
+ (for windows)
+進入"think"資料夾，利用"記事本"更改 manifest.yml 檔案，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份)
  <br>
     **example :** <br>
     假設要創造一個名字叫"humix-pi2"的app作為Humix think的話,name以及host的設定就要設定為"humix-pi2",而services則是app選用的各個API,可以依照個人需求做新增及減少的動作。 <br>
