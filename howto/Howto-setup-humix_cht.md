@@ -33,15 +33,16 @@
 因為 humix think 主要運作於IBM Bluemix平台上，所以想要 enable humix的"大腦"，這個步驟要在本機端做操作。 <br>
 a. 將"humix-ng" 從github clone到本機端後做相關設定。
 <pre>git clone https://github.com/project-humix/humix-ng.git </pre>
-b.  進入"think"資料夾， 更改 manifest.yml 檔案設定 
+b.  進入"think"資料夾， 更改 manifest.yml 檔案設定 <br>
+<b>(for linux)</b><br>
 進入"think"資料夾
-(for linux)
 <pre>cd humix-ng/think </pre>
 更改 manifest.yml 檔案設定，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份) <br>
 <pre>vim manifest.yml </pre>
  <img border="0" height="280" src="https://4.bp.blogspot.com/-DG2AZWai6XI/Vw9RbQ6jfBI/AAAAAAAAACA/Z-qpv-dcEncJl_QmZy2swW_GR8kqD83RACKgB/s1600/humix-ng-think_manifest.png" width="400" /> <br>
- (for windows)
-進入"think"資料夾，利用"記事本"更改 manifest.yml 檔案，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份)
+ <b>(for windows)</b><br>
+進入"think"資料夾，利用"記事本"更改 manifest.yml 檔案，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份)<br>
+ <img border="0" height="280" src="https://3.bp.blogspot.com/-70tonD0jfdo/VyhEH5jH-pI/AAAAAAAAAH8/m2fW78jhsMc-6zIJdP2cZzqMdtIjpegVwCLcB/s1600/think_manifest.png" width="400" /> <br>
  <br>
     **example :** <br>
     假設要創造一個名字叫"humix-pi2"的app作為Humix think的話,name以及host的設定就要設定為"humix-pi2",而services則是app選用的各個API,可以依照個人需求做新增及減少的動作。 <br>
@@ -71,7 +72,9 @@ c. < install cf-cli client >  <br>
 安裝 cf-cli後 ，可利用command line登入bluemix帳號及將創好的app發佈到bluemix上. <br>
 下載地址 : https://github.com/cloudfoundry/cli <br>
 
-d. 執行 deployThink.sh <br>
+d. 到"think"資料夾將設定好的app及service發佈到Bluemix上
+<b>(for linux)</b><br>
+執行 deployThink.sh (完成登入bluemix帳號、新增servces及發佈app)<br>
 <pre>./deployThink.sh</pre>
 登入bluemix 帳號，選擇space (只有一個space時不用選)
 ```
@@ -97,6 +100,41 @@ d. 執行 deployThink.sh <br>
     Space:          dev
     Creating service instance Humix-Cloudant-Service in org liuch@tw.ibm.com / space dev as liuch@tw.ibm.com... 
 ```
+<b>(for windows)</b><br>
+利用 cf 指令登入bluemix 帳號，選擇space (只有一個space時不用選)  <br>
+<pre>cf login</pre>
+example:
+```
+    API endpoint: https://api.ng.bluemix.net
+    Email> liuch@tw.ibm.com
+    Password>
+
+    Authenticating...
+    OK
+    Targeted org liuch@tw.ibm.com
+    Select a space (or press enter to skip):
+    1. dev
+    2. demo
+    3. personal
+    
+    Space> 1
+
+    Targeted space dev
+    
+    API endpoint:   https://api.ng.bluemix.net (API version: 2.40.0)
+    User:           liuch@tw.ibm.com
+    Org:            liuch@tw.ibm.com
+    Space:          dev
+    Creating service instance Humix-Cloudant-Service in org liuch@tw.ibm.com / space dev as liuch@tw.ibm.com... 
+```
+分別新增4個 services <br>
+<pre>cf create-service cloudantNoSQLDB Shared Humix-Cloudant-Service</pre>
+<pre>cf create-service dialog standard Humix-Dialog-Service
+</pre>
+<pre>cf create-service natural_language_classifier standard Humix-NLC-Service</pre>
+<pre>cf create-service speech_to_text standard Humix-Speech-Service</pre>
+發佈app <br>
+<pre>cf push </pre>
 e. 確認剛剛建立的"humix-think"可以運作 <br>
 **http://< your_app_name >.mybluemix.net** <br>
 如果成功了，可以看到下面的網頁畫面,同時，也可以先添加好Humix的SenceID <br>
