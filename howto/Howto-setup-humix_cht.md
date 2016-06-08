@@ -72,8 +72,10 @@ c. < install cf-cli client >  <br>
 安裝 cf-cli後 ，可利用command line登入bluemix帳號及將創好的app發佈到bluemix上. <br>
 下載地址 : https://github.com/cloudfoundry/cli <br>
 
-d. 到"think"資料夾將設定好的app及service發佈到Bluemix上
-<b>(for linux)</b><br>
+d. 到"think"資料夾將設定好的app及service發佈到Bluemix上<br>
+
+---
+##### <b>(for linux)</b><br>
 執行 deployThink.sh (完成登入bluemix帳號、新增servces及發佈app)<br>
 <pre>./deployThink.sh</pre>
 登入bluemix 帳號，選擇space (只有一個space時不用選)
@@ -100,7 +102,9 @@ d. 到"think"資料夾將設定好的app及service發佈到Bluemix上
     Space:          dev
     Creating service instance Humix-Cloudant-Service in org liuch@tw.ibm.com / space dev as liuch@tw.ibm.com... 
 ```
-<b>(for windows)</b><br>
+---
+---
+##### <b>(for windows)</b><br>
 利用 cf 指令登入bluemix 帳號，選擇space (只有一個space時不用選)  <br>
 <pre>cf login</pre>
 example:
@@ -135,6 +139,7 @@ example:
 <pre>cf create-service speech_to_text standard Humix-Speech-Service</pre>
 發佈app <br>
 <pre>cf push </pre>
+---
 e. 確認剛剛建立的"humix-think"可以運作 <br>
 **http://< your_app_name >.mybluemix.net** <br>
 如果成功了，可以看到下面的網頁畫面,同時，也可以先添加好Humix的SenceID <br>
