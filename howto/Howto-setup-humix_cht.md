@@ -104,7 +104,7 @@ d. 到"think"資料夾將設定好的app及service發佈到Bluemix上<br>
     User:           liuch@tw.ibm.com
     Org:            liuch@tw.ibm.com
     Space:          dev
-    Creating service instance Humix-Cloudant-Service in org liuch@tw.ibm.com / space dev as liuch@tw.ibm.com... 
+   
 ```
 ---
 ---
