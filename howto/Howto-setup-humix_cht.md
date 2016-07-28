@@ -3,17 +3,15 @@
 #### Humix 主架構  ---- 分為兩大部份(think、sense)
 
 >Humix-ng <br>
-|--- Humix Think (以IBM Bluemix為基礎建立Humix的"大腦") <br>
-|--- Humix Sense (為Humix的"小腦"，接收RPi的資訊並傳送至"大腦") <br>
+|--- Humix Think (機器人的雲端 "大腦") <br>
+|--- Humix Sense (機器人的"小腦"，安裝在機器人身上，並將收到的資訊傳送至"大腦") <br>
     
-#### Think & Sense
-- Humix Think 其實就是一個位於Bluemix上的app,此app可結合Bluemix中的各個 API (模組化應用程式介面,ex. Speech to Text ... ),擁有儲存資料、翻譯語音等功能
-- Humix Sense 則是在RPi 中接收"外界"資訊，並與"Think"做連結，將所接收到的資訊傳送到Bluemix上的app(Humix Think)
 
 > **< Note >** <br> 
-> 因為"Humix Think"是個app，所以一個think可搭配多個sence，也就是說，一個app可接收多個機器人(Humix)資訊的意思!! <br>
+> 一個think可搭配多個sense，也就是說，一個大腦可以同時控制多個機器人 <br>
 
-## 硬體需求
+
+## 硬體需求 (以raspberrypi 開發為例)
     1. Raspberry Pi/Pi2/Pi3  (or 任何可執行 Node.js 4.2.x+ 的開發板)
     2. Micro SD 卡
     3. USB Sound Card
@@ -26,25 +24,25 @@
 -   Enable Humix Think  <br>
 
 ##### step1.  申請/登入 Bluemix account (本機端) <br>
-登入bluemix後需更改"Region"。將Region設定在"美國南部"！！ <br>
+登入bluemix後需更改"Region"。將Region設定在"美國南部" <br>
 <img border="0" height="280" src="https://1.bp.blogspot.com/-wnsU8Sj6xyI/Vw81z3pRSlI/AAAAAAAAABs/PtqygkrMWAowDsHq5ZqtZ5cmM_WLuc7-gCLcB/s1600/IBM%2BBluemix%2B-region2.png" width="400" /> <br>
 
 ##### step2.  Humix Think 設定 (本機端) <br>
-因為 humix think 主要運作於IBM Bluemix平台上，所以想要 enable humix的"大腦"，這個步驟要在本機端做操作。 <br>
-a. 將"humix-ng" 從github clone到本機端後做相關設定。
-<pre>git clone https://github.com/project-humix/humix-ng.git </pre>
-b.  進入"think"資料夾， 更改 manifest.yml 檔案設定 <br>
+因為 humix think 主要運作於IBM Bluemix平台上，所以想要 enable humix的"大腦"，這個步驟要在本機(e.g. local laptop)端做操作。 <br>
+a. 將"humix-think" 從github clone到本機端後做相關設定。
+<pre>git clone https://github.com/project-humix/humix-think.git </pre>
+b.  進入"humix-think"資料夾， 更改 manifest.yml 檔案設定 <br>
 
 ---
 <b>(for linux)</b><br>
 進入"think"資料夾
-<pre>cd humix-ng/think </pre>
+<pre>cd humix-think </pre>
 更改 manifest.yml 檔案設定，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份) <br>
 <pre>vim manifest.yml </pre>
  <img border="0" height="280" src="https://4.bp.blogspot.com/-DG2AZWai6XI/Vw9RbQ6jfBI/AAAAAAAAACA/Z-qpv-dcEncJl_QmZy2swW_GR8kqD83RACKgB/s1600/humix-ng-think_manifest.png" width="400" /> <br>
 ---
  <b>(for windows)</b><br>
-進入"think"資料夾，利用"記事本"更改 manifest.yml 檔案，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份)<br>
+進入"think"資料夾，更改 manifest.yml 檔案，設定屬於自己的 application name ( the name must be unique ) (紅色框框為需要更改的部份)<br>
  <img border="0" height="280" src="https://3.bp.blogspot.com/-70tonD0jfdo/VyhEH5jH-pI/AAAAAAAAAH8/m2fW78jhsMc-6zIJdP2cZzqMdtIjpegVwCLcB/s1600/think_manifest.png" width="400" /> <br>
 ---
 **example :** <br>
@@ -62,8 +60,7 @@ applications:
       disk_quota: 1024M
       services:
       - Humix-Cloudant-Service
-      - Humix-Dialog-Service
-      - Humix-NLC-Service
+      - Humix-Conversation-Service
       - Humix-Speech-Service
       command: node --max-old-space-size=384 app.js --settings ./bluemix-settings.js -v 
  ```
@@ -85,12 +82,12 @@ d. 到"think"資料夾將設定好的app及service發佈到Bluemix上<br>
 登入bluemix 帳號，選擇space (只有一個space時不用選)
 ```
     API endpoint: https://api.ng.bluemix.net
-    Email> liuch@tw.ibm.com
-    Password>
+    Email> alice@abc.com
+    Password> your_password
 
     Authenticating...
     OK
-    Targeted org liuch@tw.ibm.com
+    Targeted org alice@abc.com
     Select a space (or press enter to skip):
     1. dev
     2. demo
@@ -101,10 +98,10 @@ d. 到"think"資料夾將設定好的app及service發佈到Bluemix上<br>
     Targeted space dev
     
     API endpoint:   https://api.ng.bluemix.net (API version: 2.40.0)
-    User:           liuch@tw.ibm.com
-    Org:            liuch@tw.ibm.com
+    User:           alice@abc.com
+    Org:            alice@abc.com
     Space:          dev
-    Creating service instance Humix-Cloudant-Service in org liuch@tw.ibm.com / space dev as liuch@tw.ibm.com... 
+    Creating service instance Humix-Cloudant-Service in org alice@abc.com / space dev as alice@abc.com ... 
 ```
 ---
 ---
@@ -114,12 +111,12 @@ d. 到"think"資料夾將設定好的app及service發佈到Bluemix上<br>
 example:
 ```
     API endpoint: https://api.ng.bluemix.net
-    Email> liuch@tw.ibm.com
+    Email> alice@abc.com
     Password>
 
     Authenticating...
     OK
-    Targeted org liuch@tw.ibm.com
+    Targeted org alice@abc.com
     Select a space (or press enter to skip):
     1. dev
     2. demo
@@ -130,16 +127,13 @@ example:
     Targeted space dev
     
     API endpoint:   https://api.ng.bluemix.net (API version: 2.40.0)
-    User:           liuch@tw.ibm.com
-    Org:            liuch@tw.ibm.com
+    User:           your
+    Org:            alice@abc.com
     Space:          dev
     
 ```
-分別新增4個 services <br>
+新增2個 services <br>
 <pre>cf create-service cloudantNoSQLDB Shared Humix-Cloudant-Service</pre>
-<pre>cf create-service dialog standard Humix-Dialog-Service
-</pre>
-<pre>cf create-service natural_language_classifier standard Humix-NLC-Service</pre>
 <pre>cf create-service speech_to_text standard Humix-Speech-Service</pre>
 發佈app <br>
 <pre>cf push </pre>
@@ -149,14 +143,14 @@ e. 確認剛剛建立的"humix-think"可以運作 <br>
 如果成功了，可以看到下面的網頁畫面,同時，也可以先添加好Humix的SenceID <br>
 <img border="0" height="280" src="https://3.bp.blogspot.com/-ntpV9i7u44g/VxEyXVlCufI/AAAAAAAAAG4/dSGYiqs_ZGIpSqAPBB2aHZlZyt9NkjKgwCLcB/s1600/humix-pi2-addsense.png" width="400" />
 
-成功將humix的"大腦"(app)送到bluemix平台之後，接著就是在RPi 3登場的時刻！<br>
+成功將humix的"大腦"(app)送到bluemix平台之後，接著就是在RPi3 設定Humix 小腦<br>
 
 ## 2.   Humix Sense設定 
 - Enable Humix Sense <br>
 
 ##### step1. 下載並解壓縮"humix.img"至SD card (RPi 3) <br>
 下載humix的映像檔，並解壓縮燒錄至 SD card 中(映像檔包含RPi 3的作業系統Raspbian Jessie、humix-ng) <br>
-下載地址：[humix.img](http://119.81.185.45/humix_image/humix-jessie-0.2.img.gz) <br>
+下載地址：[humix.img](http://119.81.185.45/humix_image/humix-sense-v1.0.gz) <br>
 ##### step2. 連線登入RPi 3 (RPi 3) <br>
 接著，利用USB-Serial-Cable 及[Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)，連線登入Pi 3。 <br>
 使用者"pi"，密碼為"raspberry" <br>
@@ -188,7 +182,7 @@ sudo ifup wlan0 </pre>
 利用Putty，設定好ip，以 wi-fi 重新連線進入RPi 3 後，就可以開始設定humix sense了！ <br>
 
 ##### step3. 更改 Humix Sense Config 設定 (RPi 3)
-<pre>cd ~/humix-ng/sense/
+<pre>cd ~/humix-sense/sense/
 vi config.js </pre>
 **example:**
 ```
@@ -211,7 +205,7 @@ vi config.js</pre>
 
 ##### step5. 執行 Humix Sense. (RPi3) <br> 
 設定好麥克風及喇叭後，到"sense"輸入 $ npm start 執行 Humix Sense 
-<pre> cd ~/humix-ng/sense 
+<pre> cd ~/humix-sense/sense 
  npm start</pre>
  <img border="0" height="280" src="https://1.bp.blogspot.com/--SaSvdNwxAc/VxDCiCZr2YI/AAAAAAAAAEU/qii75kWgaG46QD--q2HGQ-ihNE-v-MefwCLcB/s1600/pi--humix-ng-sense.png" width="400" /> <br>
  
@@ -239,7 +233,7 @@ vi config.js</pre>
 
 #####  step5. 到humix sense再次執行Humix Sense(RPi 3)
 到 RPi 3 輸入 $ npm start 再次執行Humix Sense <br>
-<pre>cd ~/humix-ng/sense  
+<pre>cd ~/humix-sense/sense  
 npm start </pre>
 與Humix開始進行對話開始 <br>
 > **< Note > 一開始要先說"Humix"這個關鍵字來啟動程式** <br>
