@@ -195,7 +195,7 @@ vi config.js </pre>
 <img border="0" height="280" src="https://2.bp.blogspot.com/-Ws14YIG-g-w/VxE0B_3oB3I/AAAAAAAAAHI/8R00fLCjrvYRhdLCsXL0estBwwt8XiytQCLcB/s1600/humix-pi2-config.png" width="400" /> <br>
 
 ##### step4. 更改 Watson Speech Recognition Credentials (RPi3) (紅色框框為需要更改的部份) 
-<pre>cd ~/humix-ng/sense/modules/core/humix-dialog-module/lib/ 
+<pre>cd ~/humix-sense/sense/modules/core/humix-dialog-module/ 
 vi config.js</pre> 
 <img border="0" height="280" src="https://4.bp.blogspot.com/-DLIadhPYcgU/Vw95gLGNfkI/AAAAAAAAAC8/gSkUB4RErfASbhQ8Bx1KybxyiaS4EL0tACLcB/s1600/IBM%2BBluemix%2B-watson.png" width="400" /> <br>
 > **< Note > 到 bluemix 取得 username,passwd** <br>
