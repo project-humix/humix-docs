@@ -150,7 +150,7 @@ e. 確認剛剛建立的"humix-think"可以運作 <br>
 
 ##### step1. 下載並解壓縮"humix.img"至SD card (RPi 3) <br>
 下載humix的映像檔，並解壓縮燒錄至 SD card 中(映像檔包含RPi 3的作業系統Raspbian Jessie、humix-ng) <br>
-下載地址：[humix.img](http://119.81.185.45/humix_image/humix-sense-v1.0.gz) <br>
+下載地址：[humix.img](http://119.81.185.45/humix_image/humix-sense-1.0.gz) <br>
 ##### step2. 連線登入RPi 3 (RPi 3) <br>
 接著，利用USB-Serial-Cable 及[Putty](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)，連線登入Pi 3。 <br>
 使用者"pi"，密碼為"raspberry" <br>
