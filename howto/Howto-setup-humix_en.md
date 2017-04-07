@@ -22,7 +22,7 @@ Once login, set your region to US South:
 
 You can run Humix Think either on bluemix or run it locally. First, clone the repository to your local machine
 
-    git clone https://github.com/project-humix/humix-ng.git
+    git clone https://github.com/project-humix/humix-think.git
    
 
 ### Deploy on bluemix
